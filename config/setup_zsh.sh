@@ -2,59 +2,59 @@
 
 setup_zsh() {
     if is_installed "zsh"; then
-        success "Zsh já está instalado."
+        success "Zsh is already installed."
     else
-        echo "Instalando Zsh..."
+        echo "Installing Zsh..."
         sudo apt install -y zsh
-        check_error "Falha ao instalar o Zsh."
-        success "Zsh instalado com sucesso."
+        check_error "Failed to install Zsh."
+        success "Zsh installed successfully."
     fi
 
-    echo "Tornando Zsh o shell padrão..."
+    echo "Making Zsh the default shell..."
     chsh -s $(which zsh)
-    check_error "Falha ao tornar o Zsh o shell padrão."
-    success "Zsh agora é o shell padrão."
+    check_error "Failed to make Zsh the default shell."
+    success "Zsh is now the default shell."
 
-    echo "Instalando Oh My Zsh..."
+    echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    check_error "Falha ao instalar o Oh My Zsh."
-    success "Oh My Zsh instalado com sucesso."
+    check_error "Failed to install Oh My Zsh."
+    success "Oh My Zsh installed successfully."
 
-    echo "Instalando Starship..."
+    echo "Installing Starship..."
     curl -fsSL https://starship.rs/install.sh | bash
-    check_error "Falha ao instalar o Starship."
-    success "Starship instalado com sucesso."
+    check_error "Failed to install Starship."
+    success "Starship installed successfully."
 
-    echo "Configurando Starship..."
+    echo "Configuring Starship..."
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-    check_error "Falha ao configurar o Starship."
-    success "Starship configurado com sucesso."
+    check_error "Failed to configure Starship."
+    success "Starship configured successfully."
 
-    echo "Instalando plugins de autocompletar comandos..."
+    echo "Installing command auto-completion plugins..."
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    check_error "Falha ao instalar o plugin zsh-autosuggestions."
-    success "Plugin zsh-autosuggestions instalado com sucesso."
+    check_error "Failed to install zsh-autosuggestions plugin."
+    success "zsh-autosuggestions plugin installed successfully."
 
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    check_error "Falha ao instalar o plugin zsh-syntax-highlighting."
-    success "Plugin zsh-syntax-highlighting instalado com sucesso."
+    check_error "Failed to install zsh-syntax-highlighting plugin."
+    success "zsh-syntax-highlighting plugin installed successfully."
 
     if [ -f ~/.zshrc ]; then
         cp ~/.zshrc ~/.zshrc.backup
-        success "Backup do .zshrc criado como .zshrc.backup."
+        success "Backup of .zshrc created as .zshrc.backup."
     fi
 
-    echo "Configurando .zshrc..."
+    echo "Configuring .zshrc..."
     sed -i 's/^plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
-    check_error "Falha ao configurar plugins no .zshrc."
-    success "Plugins configurados no .zshrc com sucesso."
+    check_error "Failed to configure plugins in .zshrc."
+    success "Plugins configured in .zshrc successfully."
 
     echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
     echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-    check_error "Falha ao adicionar plugins ao .zshrc."
-    success "Plugins adicionados ao .zshrc com sucesso."
+    check_error "Failed to add plugins to .zshrc."
+    success "Plugins added to .zshrc successfully."
 
-    echo -e "${GREEN}Instalação e configuração do Zsh concluídas! Abra um novo terminal para ver as mudanças.${NC}"
+    echo -e "${GREEN}Zsh installation and configuration complete! Open a new terminal to see the changes.${NC}"
 }
 
 setup_zsh

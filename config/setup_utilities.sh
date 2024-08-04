@@ -1,14 +1,14 @@
 #!/bin/bash
 
 setup_utilities() {
-    echo "Instalando utilitários adicionais..."
+    echo "Installing additional utilities..."
     sudo apt install -y \
         htop \
         tmux \
         vim \
         tree
-    check_error "Falha ao instalar utilitários adicionais."
-    success "Utilitários adicionais instalados com sucesso."
+    check_error "Failed to install additional utilities."
+    success "Additional utilities installed successfully."
 }
 
 setup_utilities

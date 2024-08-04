@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_packages() {
-    echo "Instalando pacotes básicos..."
+    echo "Installing basic packages..."
     sudo apt update && sudo apt install -y \
         curl \
         wget \
@@ -11,8 +11,8 @@ install_packages() {
         apt-transport-https \
         ca-certificates \
         gnupg-agent
-    check_error "Falha ao instalar pacotes básicos."
-    success "Pacotes básicos instalados com sucesso."
+    check_error "Failed to install basic packages."
+    success "Basic packages installed successfully."
 }
 
 install_packages

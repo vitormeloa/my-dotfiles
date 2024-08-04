@@ -1,7 +1,7 @@
 #!/bin/bash
 
 setup_dev_tools() {
-    echo "Instalando ferramentas de desenvolvimento..."
+    echo "Installing development tools..."
     sudo apt install -y \
         python3 \
         python3-pip \
@@ -9,8 +9,8 @@ setup_dev_tools() {
         npm \
         docker.io \
         docker-compose
-    check_error "Falha ao instalar ferramentas de desenvolvimento."
-    success "Ferramentas de desenvolvimento instaladas com sucesso."
+    check_error "Failed to install development tools."
+    success "Development tools installed successfully."
 }
 
 setup_dev_tools

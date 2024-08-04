@@ -9,11 +9,11 @@ LOG_FILE="install.log"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 success() {
-    echo -e "${GREEN}[SUCESSO]${NC} $1"
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
 
 error() {
-    echo -e "${RED}[ERRO]${NC} $1"
+    echo -e "${RED}[ERROR]${NC} $1"
 }
 
 check_error() {
@@ -29,7 +29,7 @@ is_installed() {
 
 notify_completion() {
     if command -v notify-send &> /dev/null; then
-        notify-send "Instalação Concluída" "A instalação e configuração foram concluídas com sucesso!"
+        notify-send "Installation Complete" "The installation and configuration have been successfully completed!"
     fi
 }
 
@@ -39,6 +39,7 @@ source config/setup_dev_tools.sh
 source config/setup_git.sh
 source config/setup_utilities.sh
 source config/setup_php.sh
+source config/setup_ide.sh
 
-echo -e "${GREEN}Instalação e configuração completas!${NC}"
+echo -e "${GREEN}Installation and configuration complete!${NC}"
 notify_completion
